@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 
 class MyCounterButton extends Component {
+    handleClick = () => {
+        this.props.onClick(this.props.operator, this.props.operand);
+    };
 
     render() {
-        return (<button onClick={this.props.onClick}>+1</button>);
+        return (<button onClick={this.handleClick}>{this.props.operator}{this.props.operand}</button>);
     }
 }
 const MyCounterResult = (props) => (
@@ -12,17 +15,25 @@ const MyCounterResult = (props) => (
 
 class MyCounter extends Component {
     state = { counter: 0 };
+    supportedOperations = {
+        "+": (counter, operand) => counter + operand,
+        "-": (counter, operand) => counter - operand,
+        "*": (counter, operand) => counter * operand
+    };
+    updateCounter = (operator, operand) => {
+        const newCounter = this.supportedOperations[operator](this.state.counter, operand);
 
-    incrementCounter = () => {
         this.setState({
-            counter: this.state.counter + 1
+            counter: newCounter
         });
     };
 
     render() {
         return (
             <div>
-                <MyCounterButton onClick={this.incrementCounter} />
+                <MyCounterButton onClick={this.updateCounter} operand={1} operator="+" />
+                <MyCounterButton onClick={this.updateCounter} operand={5} operator="-" />
+                <MyCounterButton onClick={this.updateCounter} operand={10} operator="*" />
                 <MyCounterResult counter={this.state.counter} />
             </div>);
     }
