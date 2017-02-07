@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import MyCounter from './MyCounter';
+import GithubCardSummary from './GithubCard';
 import './App.css';
 
 class App extends Component {
@@ -14,7 +15,10 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
+        <br />
         <MyCounter />
+        <br />
+        <GithubCardSummary />
       </div>
     );
   }

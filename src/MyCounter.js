@@ -31,6 +31,7 @@ class MyCounter extends Component {
     render() {
         return (
             <div>
+                <h2>Counter</h2>
                 <MyCounterButton onClick={this.updateCounter} operand={1} operator="+" />
                 <MyCounterButton onClick={this.updateCounter} operand={5} operator="-" />
                 <MyCounterButton onClick={this.updateCounter} operand={10} operator="*" />
